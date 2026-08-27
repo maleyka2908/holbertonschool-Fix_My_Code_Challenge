@@ -1,0 +1,26 @@
+# 0. Simple web stack
+
+## Description
+This document outlines the architecture and specifics of a simple one-server web infrastructure hosting a website accessible via www.foobar.com.
+
+## Infrastructure Components
+* **1 Domain name:** `foobar.com` configured with a `www` record pointing to the server IP `8.8.8.8`.
+* **1 Server containing:**
+  * 1 Web server (Nginx)
+  * 1 Application server
+  * 1 Application files (code base)
+  * 1 Database (MySQL)
+
+## Specifics & Explanations
+* **What is a server:** A server is a physical device, virtual device, or computer program that provides functionality for other programs or devices, called "clients".
+* **Role of the domain name:** It acts as a human-readable alias for the server's numerical IP address, making it easier for users to access the website.
+* **Type of DNS record www:** It is an **A record** (or CNAME pointing to an A record) that maps the hostname `www` to the server's IP address (`8.8.8.8`).
+* **Role of the web server:** The web server (Nginx) handles incoming HTTP requests, serves static content directly, and forwards dynamic requests to the application server.
+* **Role of the application server:** It processes the application's code base and business logic.
+* **Role of the database:** The database (MySQL) stores, organizes, and manages application data.
+* **Communication protocol:** The server uses the **TCP/IP** suite and **HTTP/HTTPS** protocols to communicate with the user's computer.
+
+## Issues with this Infrastructure
+1. **SPOF (Single Point of Failure):** All components reside on a single server. If the server goes down, the entire website becomes unavailable.
+2. **Downtime during maintenance:** Deploying new code or restarting services (like the web server) causes service interruptions and downtime.
+3. **Scalability limits:** A single server has finite resources (CPU, RAM). It cannot scale or handle heavy traffic spikes efficiently.
